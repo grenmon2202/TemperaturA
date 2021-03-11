@@ -1,0 +1,7 @@
+.container{
+    max-width: 400px;
+    margin-top : 200px;
+}
+body{
+    background-image: url(./background.jpg);
+}

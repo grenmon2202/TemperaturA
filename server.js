@@ -39,6 +39,7 @@ app.use(session({
     saveUninitialized: false,
 
 }))
+app.use(express.static(__dirname + '/views'));
 
 app.use(passport.initialize())
 app.use(passport.session())
