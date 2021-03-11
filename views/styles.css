@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .container{
     max-width: 400px;
     margin-top : 200px;
@@ -5,3 +6,52 @@
 body{
     background-image: url(./background.jpg);
 }
+=======
+body{
+    font-family : 'Mulish',sans-serif;
+}
+.dashboard{
+    border : 1px solid black;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 600px;
+    max-height: 800px;
+}
+
+.room-id{
+    position: relative;
+    border: 1px solid black;
+    margin: 20%;
+    padding: 10px;
+   
+}
+
+.status{
+    position: relative;
+    border: 1px solid black;
+    margin: 20%;
+    padding: 10px;
+}
+
+.col{
+    height: 10%;
+    border: 1px solid black;
+    padding: 25px;
+    margin: 5%;
+}
+
+.tempI{
+    margin-top: 10%;
+}
+
+.temp{
+    margin: 5%;
+    padding: 60px;
+}
+
+.tempD{
+    margin-top: 10%;
+}
+>>>>>>> c870a9eb6754f7310d10235525a2fa5db0b61d2e

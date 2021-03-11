@@ -7,7 +7,7 @@ function init(passport, get_user, get_user_by_id){
             return done(null, false, {message: 'Username not found'})
         }
 
-        console.log(user_req, pwd)
+        //console.log(user_req, pwd)
         
         if(pwd === user_req.pwd){
             return done (null, user_req)
