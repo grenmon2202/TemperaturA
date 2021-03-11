@@ -1,7 +1,21 @@
+body{
+    background-image: url(./assets/background.jpg);
+    font-family : 'Mulish',sans-serif;
+}
+
+#logo{
+    background-color: #fff;
+    border-radius: 10px;
+}
+
 .container{
     max-width: 400px;
     margin-top : 200px;
 }
-body{
-    background-image: url(./background.jpg);
+#footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #212529;
+    height : 2.0rem;
 }
