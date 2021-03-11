@@ -7,6 +7,8 @@ const passport = require('passport')
 const app = express()
 const flash = require('express-flash')
 const session = require('express-session')
+const bcrypt = require('bcrypt')
+const meth_override = require('method-override')
 
 const init_pass = require('./pass-config')
 init_pass(
@@ -39,7 +41,8 @@ app.use(session({
     saveUninitialized: false,
 
 }))
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/views'))
+app.use(meth_override('_method'))
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -56,6 +59,10 @@ app.get('/dashboard', check_auth, (req, res) => {
     res.render('dashboard.ejs')
 })
 
+app.get('/admin_dashboard', check_auth_admin, (req, res) => {
+    res.render('admin_dashboard.ejs')
+})
+
 app.post('/login', check_not_auth, passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/login',
@@ -63,7 +70,23 @@ app.post('/login', check_not_auth, passport.authenticate('local', {
 
 }))
 
+app.delete('/logout', (req,res) => {
+    req.logOut()
+    res.redirect('/login')
+})
+
 function check_auth(req, res, next){
+    if (req.isAuthenticated()){
+        if (req.user.admin){
+            return res.redirect('/admin_dashboard')
+        }
+        return next()
+    }
+
+    res.redirect('/login')
+}
+
+function check_auth_admin(req, res, next){
     if (req.isAuthenticated()){
         return next()
     }
