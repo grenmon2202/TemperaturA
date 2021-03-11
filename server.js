@@ -88,6 +88,9 @@ function check_auth(req, res, next){
 
 function check_auth_admin(req, res, next){
     if (req.isAuthenticated()){
+        if (!req.user.admin){
+            return res.redirect('/login')
+        }
         return next()
     }
 
