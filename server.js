@@ -9,28 +9,19 @@ const flash = require('express-flash')
 const session = require('express-session')
 const bcrypt = require('bcrypt')
 const meth_override = require('method-override')
+const mongoose = require('mongoose')
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+
+const db = mongoose.connection
+db.on('error', error => console.error(error))
+db.once('open', () => console.log("Connected to mongo"))
+
+const users = require('./schemas/user')
 
 const init_pass = require('./pass-config')
 init_pass(
-    passport,
-    email => users.find(user => user.email === email),
-    id => users.find(user => user.id === id)
+    passport
 )
-
-const users = [
-    {
-        id: '1',
-        email: 'Test User',
-        pwd: 'testpwd',
-        admin: true
-    },
-    {
-        id: '2',
-        email: 'Test User2',
-        pwd: 'testpwd2',
-        admin: false
-    },
-]
 
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({extended: false}))
@@ -70,14 +61,23 @@ app.post('/login', check_not_auth, passport.authenticate('local', {
 
 }))
 
+app.post('/admin_dashboard', (req, res) => {
+    res.redirect('/new_user')
+})
+
+app.get('/new_user', check_auth_admin, (req, res) => {
+    res.render('user.ejs')
+})
+
 app.delete('/logout', (req,res) => {
     req.logOut()
     res.redirect('/login')
 })
 
-function check_auth(req, res, next){
+async function check_auth(req, res, next){
+    const our_user = await req.user
     if (req.isAuthenticated()){
-        if (req.user.admin){
+        if (our_user.admin){
             return res.redirect('/admin_dashboard')
         }
         return next()
@@ -86,9 +86,10 @@ function check_auth(req, res, next){
     res.redirect('/login')
 }
 
-function check_auth_admin(req, res, next){
+async function check_auth_admin(req, res, next){
+    const our_user = await req.user
     if (req.isAuthenticated()){
-        if (!req.user.admin){
+        if (!our_user.admin){
             return res.redirect('/login')
         }
         return next()

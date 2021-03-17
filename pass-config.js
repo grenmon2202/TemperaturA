@@ -1,8 +1,10 @@
 const LocalStrategy = require('passport-local').Strategy
+const mongoose = require('mongoose')
+const users = require('./schemas/user')
 
-function init(passport, get_user, get_user_by_id){
-    const auth_user = (email, pwd, done) =>{
-        const user_req = get_user (email)
+function init(passport){
+    const auth_user = async (email, pwd, done) =>{
+        const user_req = await users.findOne({email})
         if (user_req==null){
             return done(null, false, {message: 'Username not found'})
         }
@@ -19,6 +21,11 @@ function init(passport, get_user, get_user_by_id){
 
     passport.serializeUser ((user, done) => done(null,user.id))
     passport.deserializeUser ((id, done) => {return done(null, get_user_by_id(id))})
+}
+
+async function get_user_by_id(id){
+    const user = await users.findOne({_id:id})
+    return user
 }
 
 module.exports = init
