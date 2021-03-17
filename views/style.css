@@ -1,0 +1,34 @@
+body{
+    font-family : 'Mulish',sans-serif;
+}
+.temperature{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10vh;
+    letter-spacing: none;
+    font-style: normal;
+    color: aquamarine;
+    margin-top: 5vh;
+}
+#unit{
+    font-size: 6vh;
+}
+.room-id{
+    margin-top: 10vh;
+}
+.room{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3vh;
+}
+
+
+
+
+
+
+#footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #212529;
+    height : 2.0rem;
+}
