@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <title>Temperatura</title>
     <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body class = "bg-light bg-gradient">
     <% if (messages.error) { %>
@@ -69,6 +69,42 @@
                       </svg>
                 </div>
             </div>
+    </div>
+
+    <!-- Card Containing Room and User Details -->
+    <div class="container room-info text-center">
+        <div class="card border-dark mb-3">
+            <div class="card-header text-uppercase">Room Id 7</div>
+            <div class="card-body">
+                <div class="card-text row text-start text-uppercase">
+                    <div class="col card-text">
+                        <ul class = "list-group">
+                            <li class = "list-group-item">User Name  : roy</li>
+                            <li class = "list-group-item">email   : roy@iiita.ac.in</li>
+                            <li class = "list-group-item">Mobile  : +91 7776543560</li>
+                        </ul>
+                        
+                    </div>
+                    <div class="col card-text">
+                        <ul class = "list-group">
+                            <li class = "list-group-item">Cur Temp :<span class="text-end">  24&deg;C</span> </li>
+                            <li class = "list-group-item">Max Temp :<span class="text-end">  4&deg;C </span></li>
+                            <li class = "list-group-item">Min Temp :<span class="text-end">  44&deg;C</span> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col">
+                        <div class="btn btn-outline-dark">Edit Room Info</div>
+                    </div>
+                    <div class="col">
+                        <div class="btn btn-outline-dark">Contact User</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <footer id ="footer">
