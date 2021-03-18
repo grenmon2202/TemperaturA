@@ -9,6 +9,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const bcrypt = require('bcrypt')
 const meth_override = require('method-override')
+const body_parser = require('body-parser')
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 
@@ -33,7 +34,9 @@ app.use(session({
 
 }))
 app.use(express.static(__dirname + '/views'))
+app.use(express.static(__dirname + '/views/css'))
 app.use(meth_override('_method'))
+app.use(body_parser.urlencoded({ limit: '10mb', extended: false }))
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -61,12 +64,32 @@ app.post('/login', check_not_auth, passport.authenticate('local', {
 
 }))
 
-app.post('/admin_dashboard', (req, res) => {
-    res.redirect('/new_user')
+app.post('/new_user', (req, res) => {
+    let isadmin = false
+    if(req.body.admin===1)
+        admin=true
+    const user = new users({
+        _id: req.body.uname,
+        first_name: req.body.firstname,
+        last_name: req.body.lastname,
+        email: req.body.email,
+        pwd: req.body.mobno,
+        admin: isadmin,
+        emergency_contact: false,
+        $push: {phone_nos: req.body.mobno},
+        room_id: "xyz",
+    }).save((err, newUser) => {
+        if (err) {
+            res.render('user.ejs', {user: user, errorMessage:'Please make sure that all fields are entered correctly and that the user does not already exist'})
+            console.log(err)
+        } else {
+            res.redirect('/admin_dashboard')
+        }
+    })
 })
 
 app.get('/new_user', check_auth_admin, (req, res) => {
-    res.render('user.ejs')
+    res.render('user.ejs', { user: new users(), errorMessage:''})
 })
 
 app.delete('/logout', (req,res) => {

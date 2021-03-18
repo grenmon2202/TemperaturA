@@ -1,42 +1,38 @@
 const mongoose = require('mongoose')
 
-const user_schema = new mongoose.Schema({
+const room_schema = new mongoose.Schema({
     _id: {
         type: String,
         required: true,
     },
-    first_name: {
-        type: String,
+    temperature: {
+        type: Number,
         required: true,
     },
-    last_name: {
-        type: String,
+    alarm_temp: {
+        type: Number,
         required: true,
     },
-    email: {
-        type: String,
+    thermostat: {
+        type: Number,
         required: true,
     },
-    pwd: {
-        type: String,
-        required: true,
-    },
-    admin: {
+    safe: {
         type: Boolean,
         required: true,
     },
-    emergency_contact: {
+    residential: {
         type: Boolean,
         required: true,
     },
-    phone_nos: {
-        type: [String],
+    occupied: {
+        type: Boolean,
         required: true,
     },
-    room_id: {
+    user_id: {
         type: String,
         required: true,
     },
 })
 
-module.exports = mongoose.model('users', user_schema)
+module.exports = mongoose.model('rooms', room_schema)
