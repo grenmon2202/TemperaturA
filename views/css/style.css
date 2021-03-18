@@ -19,12 +19,24 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-size: 3vh;
 }
-
-
-
-
-
-
+.room{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3vh;
+}
+.room-info{
+    max-width: 50vw;
+    margin-top: 10vh;
+}
+.row{
+    font-size: 1.4vh;
+}
+.user-info{
+    width: 60vw;
+    max-width: 800px;
+}
+.name{
+    width: 60vw;
+}
 #footer{
     position: absolute;
     bottom: 0;
