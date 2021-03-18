@@ -66,8 +66,8 @@ app.post('/login', check_not_auth, passport.authenticate('local', {
 
 app.post('/new_user', (req, res) => {
     let isadmin = false
-    if(req.body.admin===1)
-        admin=true
+    if(req.body.admin==='1')
+        isadmin=true
     const user = new users({
         _id: req.body.uname,
         first_name: req.body.firstname,
