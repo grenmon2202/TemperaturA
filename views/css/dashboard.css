@@ -1,0 +1,40 @@
+body{
+    font-family : 'Nunito',sans-serif;
+}
+#unit{
+    font-size: 4vh;
+}
+i{
+    font-size: 5vh;
+}
+i:hover{
+    color: blue;
+}
+h2:hover{
+    font-family: 'Reggae One', cursive;
+    color: blue;
+}
+.room-info{
+    max-width: 80vw;
+    margin-top: 10vh;
+}
+.row{
+    font-size: 1.4vh;
+}
+.user-info{
+    width: 60vw;
+    max-width: 800px;
+}
+.name{
+    width: 60vw;
+}
+#tempmax{
+    color: red;
+}
+.bi-pencil,.bi-telephone,.bi-save{
+    font-size: 1.4vh;
+    padding-right: 1vh;
+}
+footer{
+    height : 2.5rem;
+}
