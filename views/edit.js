@@ -25,6 +25,7 @@ save.addEventListener('click',e=>{
     edit.classList.remove('d-none');
     input.forEach(ip => {
         ip.disabled=true;
+        console.log(ip.value);
     })  
 })
 let options = document.querySelectorAll('option');
