@@ -5,6 +5,31 @@ const select = document.querySelectorAll('option');
 const room = document.querySelector('.room-id');
 const form = document.querySelector('.card-text');
 // disable input fields by default
+
+/*
+IMPORTS:
+const mongoose = require ('mongoose')
+const room = require('../schemas/room')
+const user = require('../schemas/user')
+
+FINDING NUMBER OF ROOMS:
+var no_of_rooms
+room.countDocuments({}, function (err, count){
+    if (err) console.log(err)
+    else{
+        no_of_rooms=count
+        console.log(no_of_rooms)
+        rand_gen.generator(no_of_rooms)
+    }
+})
+
+FINDING ROOM BY ID:
+this_room = await room.findOne({room_id: room_no})
+
+FINDING USER FROM ROOM:
+this_user = await user.findOne({_id: this_room.user_id})
+*/
+
 input.forEach(ip => {
     ip.disabled= true;
     // ip.setAttribute("disabled","true");

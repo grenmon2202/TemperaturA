@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const room_schema = new mongoose.Schema({
-    _id: {
-        type: String,
+    room_id: {
+        type: Number,
         required: true,
     },
     temperature: {
@@ -10,7 +10,7 @@ const room_schema = new mongoose.Schema({
         required: true,
     },
     alarm_temp: {
-        type: Number,
+        type: [Number],
         required: true,
     },
     thermostat: {

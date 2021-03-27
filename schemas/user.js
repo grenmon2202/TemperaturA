@@ -34,7 +34,7 @@ const user_schema = new mongoose.Schema({
         required: true,
     },
     room_id: {
-        type: String,
+        type: Number,
         required: true,
     },
 })

@@ -11,6 +11,7 @@ const bcrypt = require('bcrypt')
 const meth_override = require('method-override')
 const body_parser = require('body-parser')
 const mongoose = require('mongoose')
+const rand_gen = require('./scripts/rand-generator')
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 
 const db = mongoose.connection
@@ -18,6 +19,16 @@ db.on('error', error => console.error(error))
 db.once('open', () => console.log("Connected to mongo"))
 
 const users = require('./schemas/user')
+const room = require('./schemas/room')
+var no_of_rooms
+room.countDocuments({}, function (err, count){
+    if (err) console.log(err)
+    else{
+        no_of_rooms=count
+        console.log(no_of_rooms)
+        rand_gen.generator(no_of_rooms)
+    }
+})
 
 const init_pass = require('./pass-config')
 init_pass(
@@ -46,6 +57,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login', check_not_auth, (req, res) => {
+    rand_gen.generator(no_of_rooms)
     res.render('login.ejs')
 })
 
@@ -77,12 +89,37 @@ app.post('/new_user', (req, res) => {
         admin: isadmin,
         emergency_contact: false,
         $push: {phone_nos: req.body.mobno},
-        room_id: "xyz",
-    }).save((err, newUser) => {
+        room_id: no_of_rooms+1,
+    }).save(async (err, newUser) => {
         if (err) {
             res.render('user.ejs', {user: user, errorMessage:'Please make sure that all fields are entered correctly and that the user does not already exist'})
             console.log(err)
         } else {
+            no_of_rooms++
+            try {
+                temp = Math.floor(Math.random()*25)+15
+                thermo_temp = temp + (Math.floor(Math.random()*3) * (Math.round(Math.random())?1:-1))
+                await room.findOneAndUpdate(
+                    {
+                        room_id: no_of_rooms
+                    },
+                    {
+                        room_id: no_of_rooms,
+                        temperature: temp,
+                        alarm_temp: [15,40],
+                        thermostat: thermo_temp,
+                        safe: true,
+                        residential: true,
+                        occupied: true,
+                        user_id: req.body.uname
+                    },
+                    {
+                        upsert: true
+                    }
+                )
+            } catch {
+                console.log('error generating room info')
+            }
             res.redirect('/admin_dashboard')
         }
     })
