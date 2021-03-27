@@ -28,6 +28,8 @@ this_room = await room.findOne({room_id: room_no})
 
 FINDING USER FROM ROOM:
 this_user = await user.findOne({_id: this_room.user_id})
+
+this_room.temperature
 */
 
 input.forEach(ip => {
