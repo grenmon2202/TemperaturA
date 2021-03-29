@@ -31,6 +31,7 @@ room.countDocuments({}, function (err, count){
 })
 
 const init_pass = require('./pass-config')
+const user = require('./schemas/user')
 init_pass(
     passport
 )
@@ -48,6 +49,7 @@ app.use(express.static(__dirname + '/views'))
 app.use(express.static(__dirname + '/views/css'))
 app.use(meth_override('_method'))
 app.use(body_parser.urlencoded({ limit: '10mb', extended: false }))
+app.use(body_parser.json())
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -61,7 +63,10 @@ app.get('/login', check_not_auth, (req, res) => {
     res.render('login.ejs')
 })
 
-app.get('/dashboard', check_auth, (req, res) => {
+app.get('/dashboard', check_auth, async (req, res) => {
+    let getUser = await req.user
+    let getRoom = await room.findOne({room_id: getUser.room_id})
+    console.log(getUser, getRoom)
     res.render('dashboard.ejs')
 })
 
@@ -101,7 +106,8 @@ app.get('/admin_dashboard', check_auth_admin,async(req, res) => {
             "min_temp" : min_temps,
             "email" : email_ids,
             "name" : names,
-            "mobno" : mob_nos
+            "mobno" : mob_nos,
+            "errorMessage" : ''
         });
 });
 
@@ -114,8 +120,11 @@ app.post('/login', check_not_auth, passport.authenticate('local', {
 
 app.post('/new_user', (req, res) => {
     let isadmin = false
-    if(req.body.admin==='1')
+    let isEC = false
+    if(req.body.admin==='1'){
         isadmin=true
+        isEC = true
+    }
     const user = new users({
         _id: req.body.uname,
         first_name: req.body.firstname,
@@ -123,8 +132,8 @@ app.post('/new_user', (req, res) => {
         email: req.body.email,
         pwd: req.body.mobno,
         admin: isadmin,
-        emergency_contact: false,
-        $push: {phone_nos: req.body.mobno},
+        emergency_contact: isEC,
+        phone_nos: req.body.mobno,
         room_id: no_of_rooms+1,
     }).save(async (err, newUser) => {
         if (err) {
@@ -159,6 +168,47 @@ app.post('/new_user', (req, res) => {
             res.redirect('/admin_dashboard')
         }
     })
+})
+
+app.post('/admin_dashboard', async (req, res) => {
+    body = req.body
+    userreq = body[2]
+    new_thermo = body[4]
+    new_res = [body[6], body[5]]
+    if (new_res[0]>new_res[1] || (new_res[1]-new_res[0])<15){
+        return
+    }
+    var useridreq
+    try {
+        useridreq = await user.findOne({email: userreq})
+    } catch {
+        console.log('error getting user')
+    }
+    
+    if (!useridreq){
+        console.log('error updating room info')
+        return
+    }
+    else {
+        try {
+            await room.findOneAndUpdate(
+                {
+                    user_id: useridreq._id
+                },
+                {
+                    thermostat: new_thermo,
+                    alarm_temp: new_res
+                },
+                {
+                    upsert: false
+                }
+            )
+        } catch {
+            console.log('error updating room info')
+        }
+    }
+
+    return
 })
 
 app.get('/new_user', check_auth_admin, (req, res) => {

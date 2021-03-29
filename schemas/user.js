@@ -30,7 +30,7 @@ const user_schema = new mongoose.Schema({
         required: true,
     },
     phone_nos: {
-        type: [String],
+        type: String,
         required: true,
     },
     room_id: {

@@ -25,10 +25,15 @@ save.addEventListener('click',e=>{
     e.preventDefault();
     save.classList.add('d-none');
     edit.classList.remove('d-none');
+    let changes = []
     input.forEach(ip => {
         ip.disabled=true;
+        changes.push(ip.value)
         console.log(ip.value);
-    })  
+    })
+    finalChanges = JSON.stringify(changes)
+    console.log(finalChanges)  
+    fetch('http://localhost:3000/admin_dashboard', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: finalChanges})
 })
 
 // change to next or previous rooms functionality for admin

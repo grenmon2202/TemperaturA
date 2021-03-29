@@ -157,6 +157,9 @@
                         <button class="btn btn-outline-dark"><a href="tel:+918688889762"></a> <i class="bi bi-telephone"></i> Contact User</button>
                     </div>
                 </div>
+                <% if(errorMessage!='') { %>
+                    <%- errorMessage %>
+                <% } %>
             </form>
             </div>
         </div>
