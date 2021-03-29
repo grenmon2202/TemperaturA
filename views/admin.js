@@ -65,6 +65,11 @@ roomlist.addEventListener('click',e=>{
     }
 })
 
+// update based on selected option
+const select = document.querySelector('select');
+select.addEventListener('click',e=>{
+    displayroominfo(e.target.value);
+})
 // update value of temperature on dashboard given as input by the user
 const range = document.querySelectorAll('.form-range');
 const tp = document.querySelector('.tp');
@@ -77,6 +82,7 @@ document.addEventListener('click',e=>{
     tn.innerHTML = `${form.tempmin.value}&deg;c`;
     tx.innerHTML = `${form.tempmax.value}&deg;c`;
     temp.innerHTML = `${form.temp.value}<span class="align-top" id="unit">&deg;</span>c`;
+    changebackground(form.temp.value);
 })
 
 
@@ -102,8 +108,32 @@ const displayroominfo = (i)=>{
     temp.innerHTML = `${room_temps[i-1]}<span class="align-top" id="unit">&deg;</span>c`;
     tp.innerHTML = `${form.temp.value}&deg;c`;
     tn.innerHTML = `${form.tempmin.value}&deg;c`;
-    tx.innerHTML = `${form.tempmax.value}&deg;c`;    
+    tx.innerHTML = `${form.tempmax.value}&deg;c`;
+    changebackground(form.temp.value);    
+}
+
+// render background
+const changebackground = (tempv) =>{
+    const bg = document.querySelector('body').classList;
+    if(tempv<18){
+        bg.forEach(b=>{
+            bg.remove(b);
+        });
+        bg.add('templow');
+    }
+    else if(tempv>32){
+        bg.forEach(b=>{
+            bg.remove(b);
+        });
+        bg.add('temphigh');
+    }
+    else{
+        bg.forEach(b=>{
+            bg.remove(b);
+        });
+        bg.add('tempnormal');
+    }
 }
 
 // values to display when form loads initially
-displayroominfo(Math.floor((Math.random() * 10) + 1));
+displayroominfo(Math.floor((Math.random() * room_ids.length) + 1));
