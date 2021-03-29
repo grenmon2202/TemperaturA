@@ -65,9 +65,45 @@ app.get('/dashboard', check_auth, (req, res) => {
     res.render('dashboard.ejs')
 })
 
-app.get('/admin_dashboard', check_auth_admin, (req, res) => {
-    res.render('admin_dashboard.ejs')
-})
+app.get('/admin_dashboard', check_auth_admin,async(req, res) => {
+    let getRooms = await room.find();
+    no_of_rooms = getRooms.length;
+    let getUsers = await users.find();
+    let no_of_users = getRooms.length;
+    let room_ids = [];
+    let room_users = [];
+    let room_temps = [];
+    let max_temps = [];
+    let min_temps = [];
+    let email_ids = [];
+    let mob_nos = [];
+    let names = [];
+
+    for(let i=0;i<no_of_rooms;i++){
+        room_ids[i] = getRooms[i].room_id;
+        room_temps[i] = getRooms[i].temperature;
+        room_users[i] =  getRooms[i].user_id;
+        max_temps[i] =  getRooms[i].alarm_temp[1];
+        min_temps[i] =  getRooms[i].alarm_temp[0];
+    }
+    for(let i=0;i<no_of_users;i++){
+        email_ids[i] = getUsers[i].email;
+        names[i] = getUsers[i].first_name + ' ' + getUsers[i].last_name;
+        mob_nos[i] = getUsers[i].pwd;
+
+    }
+    res.render('admin_dashboard.ejs',{
+            "rooms" : getRooms,
+            "roomid" : room_ids,
+            "room_user" : room_users,
+            "room_temp" : room_temps,
+            "max_temp" : max_temps,
+            "min_temp" : min_temps,
+            "email" : email_ids,
+            "name" : names,
+            "mobno" : mob_nos
+        });
+});
 
 app.post('/login', check_not_auth, passport.authenticate('local', {
     successRedirect: '/dashboard',
@@ -97,8 +133,8 @@ app.post('/new_user', (req, res) => {
         } else {
             no_of_rooms++
             try {
-                temp = Math.floor(Math.random()*25)+15
-                thermo_temp = temp + (Math.floor(Math.random()*3) * (Math.round(Math.random())?1:-1))
+                let temp = Math.floor(Math.random()*25)+15
+                let thermo_temp = temp + (Math.floor(Math.random()*3) * (Math.round(Math.random())?1:-1))
                 await room.findOneAndUpdate(
                     {
                         room_id: no_of_rooms
