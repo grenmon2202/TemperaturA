@@ -31,7 +31,7 @@ save.addEventListener('click',e=>{
         changes.push(ip.value)
         console.log(ip.value);
     })
-    finalChanges = JSON.stringify(changes)
+    let finalChanges = JSON.stringify(changes)
     console.log(finalChanges)  
     fetch('http://localhost:3000/admin_dashboard', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: finalChanges})
 })

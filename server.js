@@ -12,7 +12,7 @@ const meth_override = require('method-override')
 const body_parser = require('body-parser')
 const mongoose = require('mongoose')
 const rand_gen = require('./scripts/rand-generator')
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify:false})
 
 const db = mongoose.connection
 db.on('error', error => console.error(error))
@@ -67,7 +67,10 @@ app.get('/dashboard', check_auth, async (req, res) => {
     let getUser = await req.user
     let getRoom = await room.findOne({room_id: getUser.room_id})
     console.log(getUser, getRoom)
-    res.render('dashboard.ejs')
+    res.render('dashboard.ejs',{
+        "room" : getRoom,
+        "user" : getUser
+    })
 })
 
 app.get('/admin_dashboard', check_auth_admin,async(req, res) => {
@@ -94,7 +97,7 @@ app.get('/admin_dashboard', check_auth_admin,async(req, res) => {
     for(let i=0;i<no_of_users;i++){
         email_ids[i] = getUsers[i].email;
         names[i] = getUsers[i].first_name + ' ' + getUsers[i].last_name;
-        mob_nos[i] = getUsers[i].pwd;
+        mob_nos[i] = getUsers[i].phone_nos;
 
     }
     res.render('admin_dashboard.ejs',{
@@ -171,10 +174,10 @@ app.post('/new_user', (req, res) => {
 })
 
 app.post('/admin_dashboard', async (req, res) => {
-    body = req.body
-    userreq = body[2]
-    new_thermo = body[4]
-    new_res = [body[6], body[5]]
+    let body = req.body
+    let userreq = body[2]
+    let new_thermo = body[4]
+    let new_res = [body[6], body[5]]
     if (new_res[0]>new_res[1] || (new_res[1]-new_res[0])<15){
         return
     }
