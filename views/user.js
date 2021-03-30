@@ -26,7 +26,7 @@ const displayroominfo = () =>{
     tp.innerHTML = `${form.temp.value}&deg;c`;
     tn.innerHTML = `${form.tempmin.value}&deg;c`;
     tx.innerHTML = `${form.tempmax.value}&deg;c`;
-    temp.innerHTML = `${form.temp.value}<span class="align-top" id="unit">&deg;</span>c`;
+    //temp.innerHTML = `${form.temp.value}<span class="align-top" id="unit">&deg;</span>c`;
     changebackground(form.temp.value);    
 }
 
