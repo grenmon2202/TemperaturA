@@ -4,12 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Reggae+One&display=swap" rel="stylesheet"> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <title>Temperatura</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/index.css">
 </head>
-<body>
+<body bg-secondary bg-gradient>
 <!-- navbar header -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a href="/" class="navbar-brand">
             <img src="/assets/logo.png" alt="logo" width="30" height="24" class ="d-inline block" id = "logo">
@@ -24,10 +25,13 @@
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Docs</a>
+                <a class="nav-link active" href="#features">Features</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">About</a>
+                <a class="nav-link active" href="#team">Team</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#contact">Contact</a>
               </li>
             </ul>
             <form class="justify-content" action="/dashboard">
@@ -39,8 +43,195 @@
     </div>
 </nav>
 
-<footer class = "position-fixed bg-dark bottom-0 container-fluid">
-    <div class="text-center text-white"> &copy; Copyright 2021 Temperatura, IIIT - Allahabad | Beta version 1.0 </div>
+<!-- carousel -->
+<section id="about">
+<div class="container mt-4">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./assets/desk4.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>TemperaturA</h5>
+          <p>One Stop Solution for all your temperature Needs</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="./assets/desk2.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>TemperaturA</h5>
+          <p>Change your room temperature with a single click</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="./assets/desk6.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>TemperaturA</h5>
+          <p>Manage your whole organization within the comfort of your home</p>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<!-- Our Mission -->
+
+<div class="py-3 text-center">
+  <div class="container">
+      <h2 class="display-4 my-4">TemperaturA</h2>
+  </div>
+  <div class="container my-4">
+    Temperatura is a remote temperature management system that monitors your room temperature and helps
+     you control your electronic appliances such as Air Conditioner's Room Heaters and other such devices
+      capable of remote access through IoT Sensors and make them accesible from anywhere and everywhere
+  </div>
+  <div class="container my-4">
+    Our aim is to make remote access of your device possible everywhere on this planet
+    Make use of our initutive dashboard to take temperature monitoring to the next level
+  </div>
+</div>
+</section>
+<!-- Features -->
+
+<!-- Contact Us -->
+
+<section class="container" id="team">
+  <div class="py-3 mb-4 text-center">
+    <div class="container">
+        <h2 class="display-4 my-4">Our Team</h2>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+    <div class="card mb-3 container">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="./assets/05.jpeg" class="card-img-top img-fluid" alt="...">
+        </div>
+        <div class="card-body col-md-8">
+          <div class="row mb-4">
+            <h5 class="card-title">Harsh Meena</h5>
+            <p class="card-text">B.Tech IInd Year IIIT Allahabad</p>
+          </div>
+          
+          <div class="row card-text">
+            <div class="col"><a href = "tel:+919330319099"><i class="bi bi-telephone"></i></a></div>
+            <div class="col"><a href = "https://github.com/grenmon2202"><i class="bi bi-github"></i></a></div>
+            <div class="col"><a href="mailto:iit2019062@iiita.ac.in"><i class="bi bi-envelope"></i></a></div>
+          </div>
+        </div>
+      </div> 
+    </div>
+   </div>
+
+   <div class="col">
+    <div class="card mb-3 container">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="./assets/62.jpeg" class="card-img-top img-fluid" alt="...">
+        </div>
+        <div class="card-body col-md-8">
+          <div class="row mb-4">
+            <h5 class="card-title">Prasanth Kota</h5>
+            <p class="card-text">B.Tech IInd Year IIIT Allahabad</p>
+          </div>
+          
+          <div class="row card-text">
+            <div class="col"><a href = "tel:+918688889762"><i class="bi bi-telephone"></i></a></div>
+            <div class="col"><a href = "https://github.com/Evadore"><i class="bi bi-github"></i></a></div>
+            <div class="col"><a href="mailto:iit2019062@iiita.ac.in"><i class="bi bi-envelope"></i></a></div>
+          </div>
+        </div>
+      </div> 
+    </div>
+   </div>
+
+   <div class="col">
+    <div class="card mb-3 container">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="./assets/65.jpeg" class="card-img-top img-fluid" alt="...">
+        </div>
+        <div class="card-body col-md-8">
+          <div class="row mb-4">
+            <h5 class="card-title">Pedada Gopal</h5>
+            <p class="card-text">B.Tech IInd Year IIIT Allahabad</p>
+          </div>
+          
+          <div class="row card-text">
+            <div class="col"><a href = "tel:+917893761911"><i class="bi bi-telephone"></i></a></div>
+            <div class="col"><a href = "https://github.com/gopal214"><i class="bi bi-github"></i></a></div>
+            <div class="col"><a href="mailto:iit2019062@iiita.ac.in"><i class="bi bi-envelope"></i></a></div>
+          </div>
+        </div>
+      </div> 
+    </div>
+   </div>
+
+   <div class="col">
+    <div class="card mb-3 container">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="./assets/84.jpeg" class="card-img-top img-fluid" alt="...">
+        </div>
+        <div class="card-body col-md-8">
+          <div class="row mb-4">
+            <h5 class="card-title">Janaki Ram</h5>
+            <p class="card-text">B.Tech IInd Year IIIT Allahabad</p>
+          </div>
+          
+          <div class="row card-text">
+            <div class="col"><a href = "tel:+916309144060"><i class="bi bi-telephone"></i></a></div>
+            <div class="col"><a href = "https://github.com/JANAKIRAM084"><i class="bi bi-github"></i></a></div>
+            <div class="col"><a href="mailto:iit2019062@iiita.ac.in"><i class="bi bi-envelope"></i></a></div>
+          </div>
+        </div>
+      </div> 
+    </div>
+   </div>
+
+  </div>
+</section>
+<section class="container" id="contact">
+  <div class="py-3 text-center">
+    <div class="container">
+        <h2 class="display-4 my-4">Contact Us</h2>
+    </div>
+  </div>
+  
+    <div class="container">
+      <form action="" id="message">
+      <div class="mb-3">
+        <label for="contactemail" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="contactemail" placeholder="Enter Your Email Address">
+      </div>
+      <div class="mb-3">
+        <label for="messagetext" class="form-label">Message</label>
+        <textarea class="form-control" id="messagetext" rows="8" placeholder="Enter Your Message"></textarea>
+      </div>
+      <button class="btn btn-outline-dark" type="submit">Send</button>
+    </form>
+    </div>
+  
+
+</section>
+<!-- Footer -->
+<footer class = "text-center position-fixed bg-dark bottom-0 container-fluid">
+    <div class="text-white"> &copy; Copyright 2021 Temperatura, IIIT - Allahabad | Beta version 1.0 </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
