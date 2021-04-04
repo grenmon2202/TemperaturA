@@ -25,13 +25,13 @@ room.countDocuments({}, function (err, count){
     if (err) console.log(err)
     else{
         no_of_rooms=count
-        console.log(no_of_rooms)
         rand_gen.generator(no_of_rooms)
     }
 })
 
 const init_pass = require('./pass-config')
 const user = require('./schemas/user')
+const { temp_check } = require('./scripts/check-safety')
 init_pass(
     passport
 )

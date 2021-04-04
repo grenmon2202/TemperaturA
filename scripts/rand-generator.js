@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const room = require('../schemas/room')
+const { temp_check } = require('./check-safety')
 const unsafe_chance = 50
 
 module.exports = {
@@ -9,10 +10,11 @@ module.exports = {
                 this_room = await room.findOne({room_id: i+1})
                 accp_temps = this_room.alarm_temp
                 diff = accp_temps[1]-accp_temps[0]
+                rand_high_low = Math.floor(Math.random()*2)
                 temp = Math.floor(Math.random()*diff)+accp_temps[0]
                 thermo_temp = temp + (Math.floor(Math.random()*3) * (Math.round(Math.random())?1:-1))
                 unsafe = Math.floor(Math.random()*unsafe_chance)
-                temp = (unsafe === 1)?(accp_temps[0]-3):temp
+                temp = (unsafe === 1)?((rand_high_low===0)?(accp_temps[0]-3):(accp_temps[1]+3)):temp
                 isSafe = (unsafe === 1)?false:true
                 await room.findOneAndUpdate(
                     {
@@ -31,5 +33,6 @@ module.exports = {
                 console.log(`failed to update room info ${i+1}`)
             }
         }
+        temp_check(no_of_rooms)
     }
 }
