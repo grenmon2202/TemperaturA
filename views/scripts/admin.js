@@ -81,7 +81,7 @@ document.addEventListener('click',e=>{
     tp.innerHTML = `${form.temp.value}&deg;c`;
     tn.innerHTML = `${form.tempmin.value}&deg;c`;
     tx.innerHTML = `${form.tempmax.value}&deg;c`;
-    temp.innerHTML = `${form.temp.value}<span class="align-top" id="unit">&deg;</span>c`;
+    //temp.innerHTML = `${form.temp.value}<span class="align-top" id="unit">&deg;</span>c`;
     changebackground(form.temp.value);
 })
 
@@ -90,6 +90,7 @@ document.addEventListener('click',e=>{
 const room_ids = document.querySelector('.room_id').innerText.split(',');
 const room_users = document.querySelector('.room_user').innerText.split(',');
 const room_temps = document.querySelector('.room_temp').innerText.split(',');
+const thermos = document.querySelector('.thermostat').innerText.split(',');
 const max_temps = document.querySelector('.max_temp').innerText.split(',');
 const min_temps = document.querySelector('.min_temp').innerText.split(',');
 const emails = document.querySelector('.email').innerText.split(',');
@@ -99,7 +100,7 @@ const ID = document.getElementById('roomid');
 
 const displayroominfo = (i)=>{
     form.name.value = names[i-1];
-    form.temp.value = room_temps[i-1];
+    form.temp.value = thermos[i-1];
     form.tempmin.value = max_temps[i-1];
     form.tempmax.value = min_temps[i-1];
     form.mobno.value = mobnos[i-1];

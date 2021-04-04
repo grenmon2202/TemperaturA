@@ -46,7 +46,6 @@ app.use(session({
 
 }))
 app.use(express.static(__dirname + '/views'))
-app.use(express.static(__dirname + '/views/css'))
 app.use(meth_override('_method'))
 app.use(body_parser.urlencoded({ limit: '10mb', extended: false }))
 app.use(body_parser.json())
@@ -81,6 +80,7 @@ app.get('/admin_dashboard', check_auth_admin,async(req, res) => {
     let room_ids = [];
     let room_users = [];
     let room_temps = [];
+    let thermostats = [];
     let max_temps = [];
     let min_temps = [];
     let email_ids = [];
@@ -91,6 +91,7 @@ app.get('/admin_dashboard', check_auth_admin,async(req, res) => {
         room_ids[i] = getRooms[i].room_id;
         room_temps[i] = getRooms[i].temperature;
         room_users[i] =  getRooms[i].user_id;
+        thermostats[i] = getRooms[i].thermostat;
         max_temps[i] =  getRooms[i].alarm_temp[1];
         min_temps[i] =  getRooms[i].alarm_temp[0];
     }
@@ -105,6 +106,7 @@ app.get('/admin_dashboard', check_auth_admin,async(req, res) => {
             "roomid" : room_ids,
             "room_user" : room_users,
             "room_temp" : room_temps,
+            "thermostat": thermostats,
             "max_temp" : max_temps,
             "min_temp" : min_temps,
             "email" : email_ids,
@@ -140,7 +142,7 @@ app.post('/new_user', (req, res) => {
         room_id: no_of_rooms+1,
     }).save(async (err, newUser) => {
         if (err) {
-            res.render('user.ejs', {user: user, errorMessage:'Please make sure that all fields are entered correctly and that the user does not already exist'})
+            res.render('new_user.ejs', {user: user, errorMessage:'Please make sure that all fields are entered correctly and that the user does not already exist'})
             console.log(err)
         } else {
             no_of_rooms++
@@ -215,7 +217,7 @@ app.post('/admin_dashboard', async (req, res) => {
 })
 
 app.get('/new_user', check_auth_admin, (req, res) => {
-    res.render('user.ejs', { user: new users(), errorMessage:''})
+    res.render('new_user.ejs', { user: new users(), errorMessage:''})
 })
 
 app.delete('/logout', (req,res) => {
