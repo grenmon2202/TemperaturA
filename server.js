@@ -123,19 +123,25 @@ app.post('/login', check_not_auth, passport.authenticate('local', {
 
 }))
 
-app.post('/new_user', (req, res) => {
+app.post('/new_user', async (req, res) => {
     let isadmin = false
     let isEC = false
     if(req.body.admin==='1'){
         isadmin=true
         isEC = true
     }
+    var password 
+    try {
+        password = await bcrypt.hash(req.body.mobno, 10)
+    } catch {
+        console.log('failed to hash password')
+    }
     const user = new users({
         _id: req.body.uname,
         first_name: req.body.firstname,
         last_name: req.body.lastname,
         email: req.body.email,
-        pwd: req.body.mobno,
+        pwd: password,
         admin: isadmin,
         emergency_contact: isEC,
         phone_nos: req.body.mobno,

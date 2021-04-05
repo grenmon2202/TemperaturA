@@ -1,5 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 const users = require('./schemas/user')
 
 function init(passport){
@@ -10,11 +11,14 @@ function init(passport){
         }
 
         //console.log(user_req, pwd)
-        
-        if(pwd === user_req.pwd){
-            return done (null, user_req)
-        } else{
-            return done (null, false, {message: 'Passwords do not match'})
+        try{
+            if(await (bcrypt.compare(pwd, user_req.pwd))){
+                return done (null, user_req)
+            } else{
+                return done (null, false, {message: 'Passwords do not match'})
+            }
+        } catch{
+            console.log('error authenticating via bcrypt')
         }
     }
     passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'pwd'}, auth_user))

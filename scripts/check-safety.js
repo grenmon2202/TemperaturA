@@ -12,7 +12,7 @@ module.exports = {
                 room_temp = this_room.temperature
                 console.log(room_temp, accp_temps)
                 if (room_temp<accp_temps[0] || room_temp>accp_temps[1]){
-                    req_user = await user.findOne({room_id: i+1})
+                    req_user = await user.find({$or:[{room_id: i+1}, {emergency_contact: true}]})
                     low = false
                     if (room_temp<accp_temps[0])
                         low = true
