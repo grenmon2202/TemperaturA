@@ -70,6 +70,7 @@ const select = document.querySelector('select');
 select.addEventListener('click',e=>{
     displayroominfo(e.target.value);
 })
+
 // update value of temperature on dashboard given as input by the user
 const range = document.querySelectorAll('.form-range');
 const tp = document.querySelector('.tp');
@@ -101,8 +102,8 @@ const ID = document.getElementById('roomid');
 const displayroominfo = (i)=>{
     form.name.value = names[i-1];
     form.temp.value = thermos[i-1];
-    form.tempmin.value = max_temps[i-1];
-    form.tempmax.value = min_temps[i-1];
+    form.tempmin.value = min_temps[i-1];
+    form.tempmax.value = max_temps[i-1];
     form.mobno.value = mobnos[i-1];
     form.email.value = emails[i-1];
     ID.value = 'Room No ' + i;

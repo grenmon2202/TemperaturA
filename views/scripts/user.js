@@ -4,10 +4,6 @@ const save = document.querySelector('.save');
 const roomlist = document.querySelector('.room-id');
 const form = document.querySelector('#user');
 
-// disable input by default
-input.forEach(ip => {
-    ip.disabled= true;
-});
 
 // update value of temperature on dashboard given as input by the user
 const range = document.querySelectorAll('.form-range');
@@ -18,6 +14,10 @@ const temp = document.querySelector('h2');
 // tp tn tx
 document.addEventListener('click',e=>{
     displayroominfo();
+    if(e.target.classList.contains('form-range')){
+        console.log(form.temp.value);
+    }
+    
 })
 
 const ID = document.getElementById('roomid');

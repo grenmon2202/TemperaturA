@@ -68,33 +68,33 @@
                              <div class="row mb-3">
                                 <label for="name" class="col-sm-2 col-form-label col-form-label-sm">Name</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control form-control-sm" id="name" placeholder="User Name" value = "<%- user.first_name + ' ' + user.last_name %>">
+                                  <input type="text" class="form-control form-control-sm" id="name" placeholder="User Name" value = "<%- user.first_name + ' ' + user.last_name %>" disabled>
                                 </div>
                              </div>
                              <div class="row mb-3">
                                 <label for="email" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
                                 <div class="col-sm-10">
-                                  <input type="email" class="form-control form-control-sm" id="email" placeholder="Email" value="<%-user.email%>">
+                                  <input type="email" class="form-control form-control-sm" id="email" placeholder="Email" value="<%-user.email%>" disabled>
                                 </div>
                              </div>
                              <div class="row mb-3">
                                 <label for="mobno" class="col-sm-2 col-form-label col-form-label-sm">Mob No</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control form-control-sm" id="mobno" placeholder="Mobile No" value="<%= user.phone_nos%>">
+                                  <input type="text" class="form-control form-control-sm" id="mobno" placeholder="Mobile No" value="<%= user.phone_nos%>" disabled>
                                 </div>
                              </div>
                         <!-- room info -->
                             <div class="row mb-3">
                                 <label for="temp" class="col-sm-2 col-form-label col-form-label-sm">Thermostat</label>
                                 <div class="col-sm-8">
-                                  <input type="range" class="form-range form-rage-sm" min =-10 max=45 step = 0.5 id="temp"value="<%- room.thermostat %>">
+                                  <input type="range" class="form-range form-rage-sm" min =16 max=42 step = 0.5 id="temp"value="<%- room.thermostat %>">
                                 </div>
                                 <div class="col-sm-2 text-center text-success tp">34&deg;c</div>
                               </div>
                               <div class="row mb-3">
                                 <label for="tempmin" class="col-sm-2 col-form-label col-form-label-sm">Min Temp</label>
                                 <div class="col-sm-8">
-                                  <input type="range" class="form-range form-range-sm" min =-10 max=45 step = 0.5 id="tempmin" value="<%- room.alarm_temp[0] %>" >
+                                  <input type="range" class="form-range form-range-sm" min =-10 max=45 step = 0.5 id="tempmin" value="<%- room.alarm_temp[0] %>">
                                 </div>
                                 <div class="col-sm-2 text-center text-primary tn">0&deg;c</div>
                               </div>
