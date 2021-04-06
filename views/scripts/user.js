@@ -13,9 +13,13 @@ const tx = document.querySelector('.tx');
 const temp = document.querySelector('h2');
 // tp tn tx
 document.addEventListener('click',e=>{
+    console.log('pressed')
     displayroominfo();
     if(e.target.classList.contains('form-range')){
-        console.log(form.temp.value);
+        changes = [form.temp.value, form.tempmin.value, form.tempmax.value]
+        let finalChanges = JSON.stringify(changes)
+        console.log(finalChanges)  
+        fetch('http://localhost:3000/dashboard', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: finalChanges})
     }
     
 })

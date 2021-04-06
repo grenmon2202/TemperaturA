@@ -30,7 +30,6 @@ room.countDocuments({}, function (err, count){
 })
 
 const init_pass = require('./pass-config')
-const user = require('./schemas/user')
 const { temp_check } = require('./scripts/check-safety')
 init_pass(
     passport
@@ -65,7 +64,6 @@ app.get('/login', check_not_auth, (req, res) => {
 app.get('/dashboard', check_auth, async (req, res) => {
     let getUser = await req.user
     let getRoom = await room.findOne({room_id: getUser.room_id})
-    console.log(getUser, getRoom)
     res.render('dashboard.ejs',{
         "room" : getRoom,
         "user" : getUser
@@ -182,44 +180,13 @@ app.post('/new_user', async (req, res) => {
 })
 
 app.post('/admin_dashboard', async (req, res) => {
-    let body = req.body
-    let userreq = body[2]
-    let new_thermo = body[4]
-    let new_res = [body[6], body[5]]
-    if (new_res[0]>new_res[1] || (new_res[1]-new_res[0])<15){
-        return
-    }
-    var useridreq
-    try {
-        useridreq = await user.findOne({email: userreq})
-    } catch {
-        console.log('error getting user')
-    }
-    
-    if (!useridreq){
-        console.log('error updating room info')
-        return
-    }
-    else {
-        try {
-            await room.findOneAndUpdate(
-                {
-                    user_id: useridreq._id
-                },
-                {
-                    thermostat: new_thermo,
-                    alarm_temp: new_res
-                },
-                {
-                    upsert: false
-                }
-            )
-        } catch {
-            console.log('error updating room info')
-        }
-    }
+    update_room_info([req.body[2], req.body[4], req.body[5], req.body[6]])
+})
 
-    return
+app.post('/dashboard', async (req, res) => {
+    console.log('here')
+    const our_user = await req.user
+    update_room_info([our_user.email, req.body[0], req.body[1], req.body[2]])
 })
 
 app.get('/new_user', check_auth_admin, (req, res) => {
@@ -262,6 +229,46 @@ function check_not_auth(req, res, next){
     }
 
     next()
+}
+
+async function update_room_info(new_info){
+    let userreq = new_info[0]
+    let new_thermo = new_info[1]
+    let new_res = [new_info[2], new_info[3]]
+    if (new_res[0]>new_res[1] || (new_res[1]-new_res[0])<15){
+        return
+    }
+    var useridreq
+    try {
+        useridreq = await users.findOne({email: userreq})
+    } catch {
+        console.log('error getting user')
+    }
+
+    if (!useridreq){
+        console.log('error updating room info user id not valid')
+        return
+    }
+    else {
+        try {
+            await room.findOneAndUpdate(
+                {
+                    user_id: useridreq._id
+                },
+                {
+                    thermostat: new_thermo,
+                    alarm_temp: new_res
+                },
+                {
+                    upsert: false
+                }
+            )
+        } catch {
+            console.log('error updating room info')
+        }
+    }
+
+    return
 }
 
 app.listen(3000)
