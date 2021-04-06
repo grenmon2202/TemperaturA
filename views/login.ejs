@@ -1,13 +1,5 @@
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Reggae+One&display=swap" rel="stylesheet"> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>Temperatura</title>
-    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/login.css">
-</head>
-<body>
+<%- include('partials/header') %>
+<body style="background: url(/assets/desk4.jpg);">
 <% if (messages.error) { %>
     <%= messages.error %>
 <% } %>
@@ -20,42 +12,34 @@
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                   <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                   <a class="nav-link active" href="#features">Features</a>
-                </li>
-                <li class="nav-item">
-                   <a class="nav-link active" href="/#team">Team</a>
-                </li>
-                <li class="nav-item">
-                   <a class="nav-link active" href="/#contact">Contact</a>
-                </li>
-            </ul>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <%- include('partials/navlinks') %>
+            <form class = "justify-content" action="/">
+                <button  class = "btn btn-outline-light me-2" type="submit">Home</button>
+            </form>
+        </div>
     </div>
 </nav>
-<div class="container mx-auto">
-    <div class="dashboard">
-        <form class="login-form" action = "/login" method = "POST">
-            <label class="form-label" for = "email">Email</label>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Username" name = "email" autocomplete="off" required>
-            </div>
-            <label class="form-label" for = "pwd">Password</label>
-            <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Password" name = "pwd" autocomplete="off" required>
-            </div>
-            <button class="btn btn-outline-dark" type="submit">Login</button>
-        </form>
-    </div>
-</div>
 
-<footer class = "position-fixed bg-dark bottom-0 container-fluid">
-    <div class="text-center text-white"> &copy; Copyright 2021 Temperatura, IIIT - Allahabad | Beta version 1.0 </div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <div class="card border-dark mb-3 mx-auto" style="max-width:50vh;margin-top: 20vh;">
+        <div class="card-header text-center"><h5 class="card-title">TemperaturA Login</h5></div>
+        <div class="card-body text-dark">
+            <form class="login-form" action = "/login" method = "POST">
+                <label class="form-label" for = "email">Email</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Username" name = "email" autocomplete="off" required>
+                </div>
+                <label class="form-label" for = "pwd">Password</label>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Password" name = "pwd" autocomplete="off" required>
+                </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-outline-dark" type="submit">Login</button>
+            </form>
+        </div>
+      </div>
+<%- include('partials/footer') %>
 </body>

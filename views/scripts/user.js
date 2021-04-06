@@ -4,8 +4,6 @@ const save = document.querySelector('.save');
 const roomlist = document.querySelector('.room-id');
 const form = document.querySelector('#user');
 
-
-
 // disable input by default
 input.forEach(ip => {
     ip.disabled= true;

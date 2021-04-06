@@ -1,13 +1,4 @@
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Reggae+One&display=swap" rel="stylesheet"> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>Temperatura</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/index.css">
-</head>
+<%- include('partials/header') %>
 <body bg-secondary bg-gradient>
 <!-- navbar header -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -18,28 +9,16 @@
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+        </button>
           <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#features">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#team">Team</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#contact">Contact</a>
-              </li>
-            </ul>
+            <%- include('partials/navlinks') %>
             <form class="justify-content" action="/dashboard">
               <button class="btn btn-outline-light me-2" type="submit">Dashboard</button>
             </form>
             <form class = "justify-content" action="/login">
               <button class="btn btn-outline-light me-2" type="submit">Login</button>
-          </form>
+            </form>
+          </div>
     </div>
 </nav>
 
@@ -54,7 +33,7 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="./assets/desk4.jpg" class="d-block w-100" alt="...">
+        <img src="./assets/desk1.jpg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>TemperaturA</h5>
           <p>One Stop Solution for all your temperature Needs</p>
@@ -68,7 +47,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="./assets/desk6.jpg" class="d-block w-100" alt="...">
+        <img src="./assets/desk3.jpg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>TemperaturA</h5>
           <p>Manage your whole organization within the comfort of your home</p>
@@ -125,10 +104,10 @@
         <div class="card-body col-md-8">
           <div class="row mb-4">
             <h5 class="card-title">Harsh Meena</h5>
-            <p class="card-text">B.Tech IInd Year IIIT Allahabad</p>
+            <p class="card-text in">B.Tech IInd Year IIIT Allahabad</p>
           </div>
           
-          <div class="row card-text">
+          <div class="row card-text in">
             <div class="col"><a href = "tel:+919330319099"><i class="bi bi-telephone"></i></a></div>
             <div class="col"><a href = "https://github.com/grenmon2202"><i class="bi bi-github"></i></a></div>
             <div class="col"><a href="mailto:iit2019062@iiita.ac.in"><i class="bi bi-envelope"></i></a></div>
@@ -147,10 +126,10 @@
         <div class="card-body col-md-8">
           <div class="row mb-4">
             <h5 class="card-title">Prasanth Kota</h5>
-            <p class="card-text">B.Tech IInd Year IIIT Allahabad</p>
+            <p class="card-text in">B.Tech IInd Year IIIT Allahabad</p>
           </div>
           
-          <div class="row card-text">
+          <div class="row card-text in">
             <div class="col"><a href = "tel:+918688889762"><i class="bi bi-telephone"></i></a></div>
             <div class="col"><a href = "https://github.com/Evadore"><i class="bi bi-github"></i></a></div>
             <div class="col"><a href="mailto:iit2019062@iiita.ac.in"><i class="bi bi-envelope"></i></a></div>
@@ -169,10 +148,10 @@
         <div class="card-body col-md-8">
           <div class="row mb-4">
             <h5 class="card-title">Pedada Gopal</h5>
-            <p class="card-text">B.Tech IInd Year IIIT Allahabad</p>
+            <p class="card-text in">B.Tech IInd Year IIIT Allahabad</p>
           </div>
           
-          <div class="row card-text">
+          <div class="row card-text in">
             <div class="col"><a href = "tel:+917893761911"><i class="bi bi-telephone"></i></a></div>
             <div class="col"><a href = "https://github.com/gopal214"><i class="bi bi-github"></i></a></div>
             <div class="col"><a href="mailto:iit2019062@iiita.ac.in"><i class="bi bi-envelope"></i></a></div>
@@ -191,10 +170,10 @@
         <div class="card-body col-md-8">
           <div class="row mb-4">
             <h5 class="card-title">Janaki Ram</h5>
-            <p class="card-text">B.Tech IInd Year IIIT Allahabad</p>
+            <p class="card-text in">B.Tech IInd Year IIIT Allahabad</p>
           </div>
           
-          <div class="row card-text">
+          <div class="row card-text in">
             <div class="col"><a href = "tel:+916309144060"><i class="bi bi-telephone"></i></a></div>
             <div class="col"><a href = "https://github.com/JANAKIRAM084"><i class="bi bi-github"></i></a></div>
             <div class="col"><a href="mailto:iit2019062@iiita.ac.in"><i class="bi bi-envelope"></i></a></div>
@@ -229,10 +208,6 @@
   
 
 </section>
-<!-- Footer -->
-<footer class = "text-center position-fixed bg-dark bottom-0 container-fluid">
-    <div class="text-white"> &copy; Copyright 2021 Temperatura, IIIT - Allahabad | Beta version 1.0 </div>
-</footer>
+<%- include('partials/footer') %>
 <script src="./scripts/index.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>

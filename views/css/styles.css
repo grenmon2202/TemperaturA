@@ -1,0 +1,106 @@
+/* Rules for Dynamic backgrounds */
+.temphigh{
+    background: #DE6262;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFB88C, #DE6262); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.templow{
+    background: #DAE2F8;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D6A4A4, #DAE2F8);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #D6A4A4, #DAE2F8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.tempnormal{
+    background: #757F9A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#logo{
+    background-color: #fff;
+    border-radius: 10px;
+}
+#unit{
+    font-size: 4vh;
+}
+.arrow{
+    font-size: 5vh;
+}
+.arrow:hover{
+    color: blue;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    color:#fff;
+}
+.room-info{
+    max-width: 80vw;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+.row{
+    font-size: 1.4vh;
+}
+.db{
+    font-size: 1.4vh;
+    padding-right: 1vh;
+}
+
+
+/*  New User Page Styles */
+.user-info{
+    width: 60vw;
+    max-width: 800px;
+}
+.name{
+    width: 60vw;
+}
+
+#about{
+    margin-top: 10vh;
+    height: 100%;
+}
+
+#team{
+    width: 80vw;
+    padding-top: 10vh;
+    height: 100%;
+}
+
+#contact{
+    max-width: 60vw;
+    height: 100%;
+    padding-top: 10vh;
+}
+
+img{
+    max-height: 40vh;
+}
+
+.card-img-top{
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.in{
+    width: 80%;
+}
+
+.bi{
+    color: #000;
+}
+
+.bi-envelope:hover{
+    color: red;
+}
+.bi-github:hover{
+    color: blue;
+}
+.bi-telephone:hover{
+    color:#44ec3e;
+}
+
+footer{
+    height : 2.5rem;
+}
