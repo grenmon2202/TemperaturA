@@ -9,15 +9,24 @@ input.forEach(ip => {
     ip.disabled= true;
 });
 
+//enable input
+const enableinput = ()=>{
+    input.forEach(ip => {
+        if(ip.id === 'roomid'|| ip.id === 'email'){
+            ip.disabled = true;
+        }
+        else{
+            ip.disabled = false;
+        }
+    }); 
+};
+
 // lets the user enter data
 edit.addEventListener('click',e=>{
     e.preventDefault();
     edit.classList.add('d-none');
     save.classList.remove('d-none');
-    input.forEach(ip => {
-        ip.disabled=false;
-    })
-    
+    enableinput();
 })
 
 //gets data entered by the user
@@ -82,7 +91,6 @@ document.addEventListener('click',e=>{
     tp.innerHTML = `${form.temp.value}&deg;c`;
     tn.innerHTML = `${form.tempmin.value}&deg;c`;
     tx.innerHTML = `${form.tempmax.value}&deg;c`;
-    //temp.innerHTML = `${form.temp.value}<span class="align-top" id="unit">&deg;</span>c`;
     changebackground(form.temp.value);
 })
 

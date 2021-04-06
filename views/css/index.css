@@ -18,6 +18,10 @@ img{
     padding-top: 10vh;
     height: 100%;
 }
+#logo{
+    background-color: #fff;
+    border-radius: 10px;
+}
 /* }
 #team{
     margin-top: 10vh;

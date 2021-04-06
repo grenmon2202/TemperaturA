@@ -29,10 +29,13 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="#">Docs</a>
+                    <a class="nav-link active" href="#features">Features</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="#">About</a>
+                    <a class="nav-link active" href="/#team">Team</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/#contact">Contact</a>
                   </li>
                 </ul>
                 <form class="justify-content" action="/logout?_method=DELETE" method="POST">
@@ -55,7 +58,7 @@
                 <div class="row">
                         <label for="roomid" class="col-sm-2 col-form-label col-form-label-sm">Room ID</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control form-control-sm" id="roomid" placeholder="Room No" value="Room No <%-room.room_id%>">
+                                <input type="text" class="form-control form-control-sm" id="roomid" placeholder="Room No" value="Room No <%-room.room_id%>" disabled>
                             </div>
                 </div>
             </div>
@@ -110,7 +113,15 @@
                 </div>
             </div>
             <div class="card-footer">
-                      <button class="btn btn-outline-dark"><a href="mailto:iit2019005@iiita.ac.in"></a> <i class="bi bi-telephone"></i> Contact Admin</button>
+              <div class="row">
+                <div class="col">
+                    <button class="btn btn-light btn-outline-dark edit" type="submit"> <i class="bi bi-pencil"></i> Edit Room Info</button>
+                    <button class="btn btn-light btn-outline-dark d-none save" type="submit"><i class="bi bi-save"></i>Update Room Info</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-dark"><a href = "tel:+919330319099"><i class="bi bi-telephone"></i>Contact Admin</a></button>
+                </div>
+             </div>
             </div>
         </div>
     </div>

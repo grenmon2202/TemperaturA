@@ -1,5 +1,9 @@
-body{
+/* body{
     font-family : 'Nunito',sans-serif;
+} */
+#logo{
+    background-color: #fff;
+    border-radius: 10px;
 }
 #unit{
     font-size: 4vh;
@@ -9,6 +13,13 @@ i{
 }
 i:hover{
     color: blue;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    color:#fff;
 }
 .room-info{
     max-width: 80vw;
@@ -24,4 +35,13 @@ i:hover{
 }
 footer{
     height : 2.5rem;
+}
+
+/*  New User Page Styles */
+.user-info{
+    width: 60vw;
+    max-width: 800px;
+}
+.name{
+    width: 60vw;
 }
