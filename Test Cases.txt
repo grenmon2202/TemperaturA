@@ -1,0 +1,27 @@
+login
+iit2019005@iiita.ac.in adminpwd (Username exists in database and password is a match)
+iit2019005@iiita.ac.in AdminPwd (Username exists in database but password did not match)
+IIT2019065@iiita.ac.in 7893761911 ('Username doesn't exist in database')
+iit2019065@iiita.ac.in svgsgvgw (Username exists in database but password did not match)
+iit2019065@iiita.ac.in 7893761911 (Username exists in database and password is a match)
+
+random generator
+10000
+1000
+100
+10
+3
+
+dashboard
+harsh meena 9330319099 (user object)
+harsh abcd meena 933019099 (user object)
+harsh 9330319099 (user object)
+harsh meena 93303190999 ('not a valid phone number')
+harsh meena 933031909 ('not a valid phone number')
+
+new user
+harsh, meena, IIT2021005, meenaharsh2002@gmail.com, 9330319099, 0 (user object)
+harsh, , IIT2021005, meenaharsh2002@gmail.com, 9330319099, 0
+harsh, meena, IIT2021005, meenaharsh2002@gmail.com, , 0
+harsh, meena, IIT2021005, meenaharsh2002@gmail.com, 93303190999, 0 (not a valid phone number)
+harsh, meena, IIT2021005, meenaharsh2002@gmail.com, 933031909, 0 (not a valid phone number)

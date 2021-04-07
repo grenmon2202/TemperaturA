@@ -1,8 +1,5 @@
 <%- include('partials/header') %>
 <body style="background: url(/assets/desk4.jpg);">
-<% if (messages.error) { %>
-    <%= messages.error %>
-<% } %>
 <!-- navbar header -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -29,13 +26,16 @@
             <form class="login-form" action = "/login" method = "POST">
                 <label class="form-label" for = "email">Email</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Username" name = "email" autocomplete="off" required>
+                    <input type="email" class="form-control" placeholder="Email" name = "email" autocomplete="off" required>
                 </div>
                 <label class="form-label" for = "pwd">Password</label>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="Password" name = "pwd" autocomplete="off" required>
                 </div>
         </div>
+        <% if (messages.error) { %>
+            <%= messages.error %>
+        <% } %>
         <div class="card-footer">
             <button class="btn btn-outline-dark" type="submit">Login</button>
             </form>

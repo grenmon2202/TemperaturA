@@ -132,6 +132,13 @@ app.post('/new_user', async (req, res) => {
         isadmin=true
         isEC = true
     }
+
+    if(req.body.mobno.length>10||req.body.mobno.length<10){
+        if(testing === 'true')
+            console.log('phone number not valid')
+        res.render('new_user.ejs', {errorMessage: 'Phone number is not valid'})
+    }
+
     var password 
     try {
         password = await bcrypt.hash(req.body.mobno, 10)
@@ -249,10 +256,15 @@ async function update_room_info(new_info){
     let new_thermo = new_info[4]
     let new_res = [new_info[5], new_info[6]]
     let pno = new_info[3]
+    if(pno.length>10||pno.length<10){
+        console.log('not a valid phone number')
+    }
     let name = new_info[1].split(' ')
     let fname = name[0]
     name.shift()
-    let lname = name.join(' ')
+    let lname = ''
+    if (name.length!=0)
+        lname = name.join(' ')
     if (new_res[0]>new_res[1] || (new_res[1]-new_res[0])<15){
         console.log('min temp more than max temp or difference less than 15')
         return

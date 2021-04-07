@@ -16,11 +16,11 @@ function init(passport){
         try{
             if(await (bcrypt.compare(pwd, user_req.pwd))){
                 if (process.env.TEST_DEMO==="true")
-                    console.log('Username exists in database but password did not match')
+                    console.log('Username exists in database and password is a match')
                 return done (null, user_req)
             } else{
                 if (process.env.TEST_DEMO==="true")
-                    console.log('Username exists in database and password is a match')
+                    console.log('Username exists in database but password did not match')
                 return done (null, false, {message: 'Passwords do not match'})
             }
         } catch{
