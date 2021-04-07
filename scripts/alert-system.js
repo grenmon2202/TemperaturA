@@ -24,7 +24,8 @@ module.exports = {
             }
             
             info = await transport.sendMail(mailOptions)
-            console.log("Message sent: %s", info.messageId);
+            if(process.env.TEST_DEMO==='true')
+            console.log(`Message sent to ${user[i].email}: ${info.messageId}`);
         }
     }
 }

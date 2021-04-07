@@ -13,6 +13,9 @@ const body_parser = require('body-parser')
 const mongoose = require('mongoose')
 const rand_gen = require('./scripts/rand-generator')
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify:false})
+const testing = process.env.TEST_DEMO
+if(testing==='true')
+    console.log('TEST MODE ENABLED')
 
 const db = mongoose.connection
 db.on('error', error => console.error(error))
@@ -31,6 +34,7 @@ room.countDocuments({}, function (err, count){
 
 const init_pass = require('./pass-config')
 const { temp_check } = require('./scripts/check-safety')
+const user = require('./schemas/user')
 init_pass(
     passport
 )
@@ -144,8 +148,19 @@ app.post('/new_user', async (req, res) => {
         emergency_contact: isEC,
         phone_nos: req.body.mobno,
         room_id: no_of_rooms+1,
-    }).save(async (err, newUser) => {
+    })
+    
+    if(testing==='true'){
+        console.log('new user created: ')
+        console.log(user)
+        res.redirect('/admin_dashboard')
+        return
+    }
+
+    user.save(async (err, newUser) => {
         if (err) {
+            if(testing==='true')
+                console.log('user already exists')
             res.render('new_user.ejs', {user: user, errorMessage:'Please make sure that all fields are entered correctly and that the user does not already exist'})
             console.log(err)
         } else {
@@ -180,13 +195,11 @@ app.post('/new_user', async (req, res) => {
 })
 
 app.post('/admin_dashboard', async (req, res) => {
-    update_room_info([req.body[2], req.body[4], req.body[5], req.body[6]])
+    update_room_info(req.body)
 })
 
 app.post('/dashboard', async (req, res) => {
-    console.log('here')
-    const our_user = await req.user
-    update_room_info([our_user.email, req.body[0], req.body[1], req.body[2]])
+    update_room_info(req.body)
 })
 
 app.get('/new_user', check_auth_admin, (req, res) => {
@@ -232,10 +245,16 @@ function check_not_auth(req, res, next){
 }
 
 async function update_room_info(new_info){
-    let userreq = new_info[0]
-    let new_thermo = new_info[1]
-    let new_res = [new_info[2], new_info[3]]
+    let userreq = new_info[2]
+    let new_thermo = new_info[4]
+    let new_res = [new_info[5], new_info[6]]
+    let pno = new_info[3]
+    let name = new_info[1].split(' ')
+    let fname = name[0]
+    name.shift()
+    let lname = name.join(' ')
     if (new_res[0]>new_res[1] || (new_res[1]-new_res[0])<15){
+        console.log('min temp more than max temp or difference less than 15')
         return
     }
     var useridreq
@@ -245,8 +264,13 @@ async function update_room_info(new_info){
         console.log('error getting user')
     }
 
+    if(testing==='true'){
+        console.log('id:', userreq, '\nnew thermostat temp:', new_thermo, '\nnew acceptable temps:', new_res, '\nfirst name:', fname, '\nlast name:', lname, '\nphone number:', pno, '\nroom number:', useridreq.room_id)
+        return
+    }
+
     if (!useridreq){
-        console.log('error updating room info user id not valid')
+        console.log('error updating info user id not valid')
         return
     }
     else {
@@ -263,8 +287,21 @@ async function update_room_info(new_info){
                     upsert: false
                 }
             )
+            await user.findOneAndUpdate(
+                {
+                    _id: useridreq._id
+                },
+                {
+                    first_name: fname,
+                    last_name: lname,
+                    phone_nos: pno
+                },
+                {
+                    upsert: false
+                }
+            )
         } catch {
-            console.log('error updating room info')
+            console.log('error updating info')
         }
     }
 

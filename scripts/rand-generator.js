@@ -1,8 +1,12 @@
 const mongoose = require('mongoose')
 const room = require('../schemas/room')
 const { temp_check } = require('./check-safety')
-const unsafe_chance = 50000000;
+var unsafe_chance = 50000000;
 // make unsafe_chance = 5 when demonstration is required
+
+if(process.env.TEST_DEMO==='true')
+    unsafe_chance=3
+
 module.exports = {
     async generator(no_of_rooms){
         for (var i = 0; i<no_of_rooms; i++){
