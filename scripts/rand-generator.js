@@ -11,15 +11,15 @@ module.exports = {
     async generator(no_of_rooms){
         for (var i = 0; i<no_of_rooms; i++){
             try {
-                this_room = await room.findOne({room_id: i+1})
-                accp_temps = this_room.alarm_temp
-                diff = accp_temps[1]-accp_temps[0]
-                rand_high_low = Math.floor(Math.random()*2)
-                temp = Math.floor(Math.random()*diff)+accp_temps[0]
-                thermo_temp = temp + (Math.floor(Math.random()*3) * (Math.round(Math.random())?1:-1))
-                unsafe = Math.floor(Math.random()*unsafe_chance)
+                let this_room = await room.findOne({room_id: i+1})
+                let accp_temps = this_room.alarm_temp
+                let diff = accp_temps[1]-accp_temps[0]
+                let rand_high_low = Math.floor(Math.random()*2)
+                let temp = Math.floor(Math.random()*diff)+accp_temps[0]
+                let thermo_temp = temp + (Math.floor(Math.random()*3) * (Math.round(Math.random())?1:-1))
+                let unsafe = Math.floor(Math.random()*unsafe_chance)
                 temp = (unsafe === 1)?((rand_high_low===0)?(accp_temps[0]-3):(accp_temps[1]+3)):temp
-                isSafe = (unsafe === 1)?false:true
+                let isSafe = (unsafe === 1)?false:true
                 await room.findOneAndUpdate(
                     {
                         room_id: i+1

@@ -1,10 +1,6 @@
 <%- include('partials/header') %>
 <body class = "tempnormal">
     <%- include('partials/data') %>
-    <!-- Login Error Messages -->
-    <% if (messages.error) { %>
-        <%= messages.error %>
-    <% } %>
     <!-- navbar header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -97,7 +93,7 @@
                             <div class="row mb-3">
                                 <label for="temp" class="col-sm-2 col-form-label col-form-label-sm">Thermostat</label>
                                 <div class="col-sm-8">
-                                  <input type="range" class="form-range form-rage-sm" min =10 max=45 step = 0.5 id="temp">
+                                  <input type="range" class="form-range form-rage-sm" min =16 max=42 step = 0.5 id="temp">
                                 </div>
                                 <div class="col-sm-2 text-center text-success tp">34&deg;c</div>
                               </div>
@@ -116,21 +112,29 @@
                                 <div class="col-sm-2 text-center text-danger tx">100&deg;c</div>
                             </div>
                     </div>
+                    <div class="input-group text-danger">
+                        <% if (messages.error) { %>
+                            <%= messages.error %>
+                        <% } %>
+                    </div>
+                    <div class="input-group text-danger">
+                        <% if(errorMessage!='') { %>
+                            <%- errorMessage %>
+                        <% } %>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="row">
                     <div class="col">
                         <button class="btn btn-light btn-outline-dark edit" type="submit"> <i class="bi bi-pencil db"></i> Edit Room Info</button>
-                        <button class="btn btn-light btn-outline-dark d-none save" type="submit"><i class="bi bi-save db"></i>Save Room Info</button>
+                        <button class="btn btn-light btn-outline-dark d-none save" type="submit"><i class="bi bi-save db"></i> Save Room Info</button>
                     </div>
                     <div class="col">
-                        <button class="btn btn-outline-dark"><a href = "tel:+919330319099"><i class="bi bi-telephone db"></i>Contact Admin</a></button>
+                        <button class="btn btn-outline-dark"><a href = "tel:+919330319099"><i class="bi bi-telephone db"></i> Contact Admin</a></button>
                     </div>
                 </div>
-                <% if(errorMessage!='') { %>
-                    <%- errorMessage %>
-                <% } %>
+                
             </form>
             </div>
         </div>

@@ -23,7 +23,7 @@ module.exports = {
                 html: `A temperature anomaly has been detected in room no. ${user[i].room_id}!! The room temperature has ${is_low?'fallen below':'exceeded'} the temperature thresholds! If the problem persists even after adjusting thermostat levels kindly contact support for a servicing request.`
             }
             
-            info = await transport.sendMail(mailOptions)
+            let info = await transport.sendMail(mailOptions)
             if(process.env.TEST_DEMO==='true')
             console.log(`Message sent to ${user[i].email}: ${info.messageId}`);
         }

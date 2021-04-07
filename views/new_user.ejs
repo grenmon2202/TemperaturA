@@ -1,8 +1,11 @@
 <%- include('partials/header') %>
 <body class = "bg-dark">
-    <% if (messages.error) { %>
-        <%= messages.error %>
-    <% } %>
+    <div class="container-fluid text-white">
+        <% if (messages.error) { %>
+            <%= messages.error %>
+        <% } %>
+    </div>
+    
     <!-- navbar header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -28,8 +31,8 @@
                        <a class="nav-link active" href="/#contact">Contact</a>
                     </li>
                 </ul>
-                <form class = "justify-content" action = "/new_user">
-                    <button class="btn btn-outline-light me-2" type="button">New User</button>
+                <form class = "justify-content" action = "/admin_dashboard">
+                    <button class="btn btn-outline-light me-2" type="submit">Dash Board</button>
                 </form>
                 <form class = "justify-content" action="/logout?_method=DELETE" method="POST">
                     <button  class = "btn btn-outline-light me-2" type="submit">Logout</button>

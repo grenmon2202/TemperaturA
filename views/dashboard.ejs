@@ -1,9 +1,5 @@
 <%- include('partials/header') %>
 <body class = "bg-light bg-gradient">
-    <!-- Login Error Messages -->
-    <% if (messages.error) { %>
-        <%= messages.error %>
-    <% } %>
     <!-- navbar header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -89,16 +85,21 @@
                               </div>
                         </form>
                     </div>
+                    <div class="input-group text-danger">
+                      <% if (messages.error) { %>
+                          <%= messages.error %>
+                      <% } %>
+                  </div>
                 </div>
             </div>
             <div class="card-footer">
               <div class="row">
                 <div class="col">
                     <button class="btn btn-light btn-outline-dark edit" type="submit"> <i class="bi bi-pencil"></i> Edit Room Info</button>
-                    <button class="btn btn-light btn-outline-dark d-none save" type="submit"><i class="bi bi-save"></i>Update Room Info</button>
+                    <button class="btn btn-light btn-outline-dark d-none save" type="submit"><i class="bi bi-save"></i> Update Room Info</button>
                 </div>
                 <div class="col">
-                    <button class="btn btn-outline-dark"><a href = "tel:+919330319099"><i class="bi bi-telephone"></i>Contact Admin</a></button>
+                    <button class="btn btn-outline-dark"><a href = "tel:+919330319099"><i class="bi bi-telephone"></i> Contact Admin</a></button>
                 </div>
              </div>
             </div>

@@ -1,22 +1,19 @@
 /* Rules for Dynamic backgrounds */
 .temphigh{
-    background: #DE6262;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFB88C, #DE6262); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-color: #feae96;
+    background-image: linear-gradient(315deg, #feae96 0%, #e9466c 74%);
 }
 .templow{
-    background: #DAE2F8;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #D6A4A4, #DAE2F8);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #D6A4A4, #DAE2F8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-color: #48dbfb;
+    background-image: linear-gradient(315deg,#d4edf5 0%, #48dbfb 74%);
 }
 .tempnormal{
-    background: #757F9A;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-color: #89d8d3;
+    background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
 }
 #logo{
-    background-color: #fff;
-    border-radius: 10px;
+    background-color: lightgray;
+    border-radius: 10%;
 }
 #unit{
     font-size: 4vh;
@@ -94,11 +91,17 @@ img{
 .bi-envelope:hover{
     color: red;
 }
+.bi-pencil:hover{
+    color: red;
+}
+.bi-save:hover{
+    color: #03c8a8;
+}
 .bi-github:hover{
     color: blue;
 }
 .bi-telephone:hover{
-    color:#44ec3e;
+    color: lime;
 }
 
 footer{

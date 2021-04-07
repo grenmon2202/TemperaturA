@@ -32,10 +32,12 @@
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="Password" name = "pwd" autocomplete="off" required>
                 </div>
+                <div class="input-group text-danger">
+                    <% if (messages.error) { %>
+                        <%= messages.error %>
+                    <% } %>
+                </div>
         </div>
-        <% if (messages.error) { %>
-            <%= messages.error %>
-        <% } %>
         <div class="card-footer">
             <button class="btn btn-outline-dark" type="submit">Login</button>
             </form>
